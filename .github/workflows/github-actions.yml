@@ -1,9 +1,8 @@
 name: frontend-client-ci-cd
 on: 
-  pull_request:
+  push:
     branches:
       - development
-    types: [closed]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,10 +15,9 @@ jobs:
       - run: npm test
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types: [closed]
 jobs:
   build:
     runs-on: ubuntu-latest
