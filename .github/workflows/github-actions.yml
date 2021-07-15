@@ -1,5 +1,9 @@
 name: frontend-client-ci-cd
-on: [push]
+on: 
+  pull_request:
+    branches:
+      - development
+    types: [closed]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -10,3 +14,19 @@ jobs:
           node-version: "14"
       - run: npm install
       - run: npm test
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: npm install
+      - run: npm build
